@@ -1,0 +1,12 @@
+.centrar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.text {
+    font-size: 14.5rem;
+}
+.foto { 
+    width: 500px;
+    height: 500px;
+}
