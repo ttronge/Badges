@@ -1,11 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Badge from '../Components/Badge/Badge'
 import DeleteBadgeModal from '../Components/DeleteBadge/Delete'
 import Modal from '../Components/modal/Modal'
 import './style/BadgeDetails.css'
-function BadgeDetails(props) {
 
+function useIncreaseCount(max) {
+    const [count, setCount] = useState(0)
+    if (count > max) {
+        setCount(0)
+    }
+    return [count, setCount]
+}
+function BadgeDetails(props) {
+    const [count, setCount] = useIncreaseCount(4)
     const badge = props.badge
     return (
         <div>
@@ -26,14 +34,26 @@ function BadgeDetails(props) {
                     <div className="col-6">
                         <Badge firstName={badge.firstName} lastName={badge.lastName} email={badge.email} twitter={badge.twitter} jobTitle={badge.jobTitle} />
                     </div>
+
+
                     <div className="col-6">
                         <h2>Actions</h2>
-                        <div><Link to={`/badges/${badge.id}/edit`} >
-                            <button className='btn btn-primary mb-4'>
-                                Edit
-                    </button>
+                        <div>
+                            <div>
+                                <button onClick={() => {
+                                    setCount(count + 1)
+                                }} className='btn btn-primary mr-4'>
+                                    Incrase Count: {count}
+                                </button>
+                                <br />
+                                <br />
+                            </div>
+                            <Link to={`/badges/${badge.id}/edit`} >
+                                <button className='btn btn-primary mb-4'>
+                                    Edit
+                                 </button>
 
-                        </Link>
+                            </Link>
                         </div>
                         <div>
                             <button onClick={props.onOpenModal} className='btn btn-danger'>Delete</button>

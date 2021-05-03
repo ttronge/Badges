@@ -5,7 +5,6 @@ import PageLoading from '../Components/PageLoading/PageLoading'
 import PageError from '../Components/PageError/PageError'
 
 class BadgesDetailsContainer extends React.Component {
-
     state = {
         loading: true,
         error: null,
@@ -13,12 +12,10 @@ class BadgesDetailsContainer extends React.Component {
         modalIsOpen: false
 
     }
-
     componentDidMount() {
         this.fetchData()
-
-
     }
+
     fetchData = async () => {
         this.setState({ loading: true, error: null })
         try {
